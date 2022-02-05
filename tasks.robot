@@ -1,13 +1,16 @@
 *** Settings ***
-Documentation     Insert the sales data for the week and export it as a PDF.
+Documentation     Get holdings from kite
 Library           RPA.Browser.Selenium    auto_close=${FALSE}
 Library           RPA.Robocorp.Vault
+Library           RPA.Desktop
 
 *** Tasks ***
-Insert the sales data for the week and export it as a PDF
+Fetch report from Zerodha Kite
     Open the intranet website
     Log in
     Insert Pin
+    Go to holdings
+    logout
 
 *** Keywords ***
 Open the intranet website
@@ -15,7 +18,6 @@ Open the intranet website
 
 Log in
     ${secret}=    Get Secret    zerodha
-    Log To Console    ${secret}
     Input Text    userid    ${secret}[username]
     Input Password    password    ${secret}[password]
     Submit Form
@@ -27,4 +29,9 @@ Insert Pin
     Submit Form
 
 Go to holdings
-    # <a href="/holdings" class=""><span class="icon icon-briefcase"></span></a>
+    Sleep    1
+    Go To    https://kite.zerodha.com/holdings
+    Take Screenshot    output/screenshot.png
+
+logout
+    Go To    https://kite.zerodha.com/logout
