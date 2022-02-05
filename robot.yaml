@@ -1,6 +1,7 @@
 tasks:
   Run Python:
-    shell: python task.py
+    # shell: python task.py
+    shell: python -m robot --report NONE --outputdir output --logtitle "Task log" tasks.robot
 
 condaConfigFile: conda.yaml
 artifactsDir: output
