@@ -34,7 +34,7 @@ get date range
     [Return]    ${first day}    ${last day}
 
 Fill in data
-    select frame    css:html > frameset > frameset > frameset > frame:nth-child(1)
+    select frame    ${p2_frame}
     select from list by value    name:selAccttype    SCA
     Sleep    1
     Select From List By Index    name:selAcct    1
@@ -48,7 +48,7 @@ Fill in data
 
 Go to bank statement page
     sleep    ${timeout}
-    select frame    ${p1_frame_xpath}
+    select frame    ${sidepane_frame}
     current frame should contain    ${p1_enquiry_text}
     click element    ${p1_enquiry_xpath}
     click element    ${p1_acntStatmnt_xpath}
@@ -60,11 +60,7 @@ Log in to HDFC website
     Set Download Directory    ${DOWNLOAD_DIR}
     Open Available Browser    ${LOGIN URL}
     ${secret}=    Get Secret    hdfc
-    Select Frame    login_page
-    # <input type="text" class="form-control text-muted" style="width: 245px;height: 30px"
-    # name="fldLoginUserId" maxlength="15" size="13" onkeypress="return fSubmit(event);"
-    # value="" oncopy="return false" ondrag="return
-    # false" ondrop="return false" onpaste="return false" onfocus="return false">
+    Select Frame    ${p1_frame}
     Input Text When Element Is Visible    css:input[name="fldLoginUserId"]    ${secret}[customerId]
     Click Element    xpath://*[@id="pageBody"]/div[1]/form/div[3]/div/div/div[2]/div[2]/div[2]/div[2]/a
     Input Text When Element Is Visible    css:input[name="fldPassword"]    ${secret}[password]
