@@ -4,11 +4,12 @@ Resource          zerodha_resources.robot
 Library           OperatingSystem
 
 *** Variables ***
-${DOWNLOAD_DIR}    ${CURDIR}/output/download
+${DOWNLOAD_DIR}    ${CURDIR}/output/download/zerodha
 
 *** Tasks ***
 Empty the download Directory
-    Empty Directory    ${DOWNLOAD_DIR}
+    Run Keyword And Ignore Error
+    ...    Empty Directory    ${DOWNLOAD_DIR}
 
 Download reports from Zerodha
     Go to Kite website
