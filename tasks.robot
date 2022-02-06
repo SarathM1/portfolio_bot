@@ -63,8 +63,10 @@ Log in to HDFC website
     RPA.Desktop.Press Keys    enter
     Sleep    1
     Type Text    ${secret}[password]
-    Sleep    1
-    Execute Manual Step    Please click on the checkbox and click LOGIN
+    Select Frame    login_page
+    Click Element    css:input[name="chkrsastu"]
+    Click Element    xpath:/html/body/form/div/div[3]/div/div[1]/div[2]/div[1]/div[4]/div[2]/a
+    Unselect Frame
 
 Logout from hdfc
     # Be very careful with frame! Anything inside frame can be selected only after selecting the frame
