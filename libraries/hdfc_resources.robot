@@ -17,3 +17,5 @@ ${sidepane_frame}    left_menu
 # Download report page
 ${p2_frame}       main_part
 ${timeout}        3s
+${selector_topBar}    common_menu1
+${selector_logout}    xpath://img[@alt="Log Out"]

@@ -37,8 +37,8 @@ Fill in data
     Wait Until Keyword Succeeds    ${timeout}    1 sec
     ...    select frame    ${p2_frame}
     select from list by value    name:selAccttype    SCA
-    Sleep    1
-    Select From List By Index    name:selAcct    1
+    Wait Until Keyword Succeeds    ${timeout}    1 sec
+    ...    Select From List By Index    name:selAcct    1
     click element    xpath://*[@id="hideradio"]/span
     ${first day}    ${last day} =    get date range
     Input text    frmDatePicker    ${first day}
@@ -70,5 +70,5 @@ Log in to HDFC website
 
 Logout from hdfc
     # Be very careful with frame! Anything inside frame can be selected only after selecting the frame
-    Select Frame    common_menu1
-    Click Element    xpath://img[@alt="Log Out"]
+    Select Frame    ${selector_topBar}
+    Click Element    ${selector_logout}
