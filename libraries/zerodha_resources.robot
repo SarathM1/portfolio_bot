@@ -7,9 +7,10 @@ Library           RPA.Robocorp.Vault
 Library           RPA.Tables
 
 *** Keywords ***
-Go to Kite website
+Log in to Kite website
     Set Download Directory    ${DOWNLOAD_DIR}
     Open Available Browser    https://kite.zerodha.com
+    Log in
 
 Log in
     ${secret}=    Get Secret    zerodha
