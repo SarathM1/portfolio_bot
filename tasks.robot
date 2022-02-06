@@ -67,5 +67,6 @@ Log in to HDFC website
     Execute Manual Step    Please click on the checkbox and click LOGIN
 
 Logout from hdfc
+    # Be very careful with frame! Anything inside frame can be selected only after selecting the frame
     Select Frame    common_menu1
     Click Element    xpath://img[@alt="Log Out"]
