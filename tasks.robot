@@ -11,7 +11,8 @@ ${HDFC_DOWNLOAD_DIR}    ${CURDIR}/output/download/hdfc
 Empty the download Directory
     Run Keyword And Ignore Error
     ...    Empty Directory    ${DOWNLOAD_DIR}
-    Empty Directory    ${HDFC_DOWNLOAD_DIR}
+    Run Keyword And Ignore Error
+    ...    Empty Directory    ${HDFC_DOWNLOAD_DIR}
 
 Download reports from Zerodha
     Log in to Kite website
