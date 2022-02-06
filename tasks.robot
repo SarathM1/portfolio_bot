@@ -34,9 +34,10 @@ get date range
     [Return]    ${first day}    ${last day}
 
 Fill in data
-    select frame    ${p2_frame_xpath}
+    select frame    css:html > frameset > frameset > frameset > frame:nth-child(1)
     select from list by value    name:selAccttype    SCA
-    Execute Manual Step    Please select the account
+    Sleep    1
+    Select From List By Index    name:selAcct    1
     click element    xpath://*[@id="hideradio"]/span
     ${first day}    ${last day} =    get date range
     Input text    frmDatePicker    ${first day}
@@ -59,11 +60,14 @@ Log in to HDFC website
     Set Download Directory    ${DOWNLOAD_DIR}
     Open Available Browser    ${LOGIN URL}
     ${secret}=    Get Secret    hdfc
-    Type Text    ${secret}[customerId]
-    RPA.Desktop.Press Keys    enter
-    Sleep    1
-    Type Text    ${secret}[password]
     Select Frame    login_page
+    # <input type="text" class="form-control text-muted" style="width: 245px;height: 30px"
+    # name="fldLoginUserId" maxlength="15" size="13" onkeypress="return fSubmit(event);"
+    # value="" oncopy="return false" ondrag="return
+    # false" ondrop="return false" onpaste="return false" onfocus="return false">
+    Input Text When Element Is Visible    css:input[name="fldLoginUserId"]    ${secret}[customerId]
+    Click Element    xpath://*[@id="pageBody"]/div[1]/form/div[3]/div/div/div[2]/div[2]/div[2]/div[2]/a
+    Input Text When Element Is Visible    css:input[name="fldPassword"]    ${secret}[password]
     Click Element    css:input[name="chkrsastu"]
     Click Element    xpath:/html/body/form/div/div[3]/div/div[1]/div[2]/div[1]/div[4]/div[2]/a
     Unselect Frame
