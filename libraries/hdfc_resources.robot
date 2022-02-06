@@ -1,6 +1,12 @@
 *** Variables ***
 ${DOWNLOAD_DIR}    ${CURDIR}/output/download/zerodha
 ${LOGIN URL}      https://netbanking.hdfcbank.com/netbanking/
+# Login page
+${selector_user}    css:input[name="fldLoginUserId"]
+${selector_continue}    xpath://*[@id="pageBody"]/div[1]/form/div[3]/div/div/div[2]/div[2]/div[2]/div[2]/a
+${selector_pwd}    css:input[name="fldPassword"]
+${selector_secure_img}    css:input[name="chkrsastu"]
+${selector_submit}    xpath:/html/body/form/div/div[3]/div/div[1]/div[2]/div[1]/div[4]/div[2]/a
 # landing page
 ${p1_frame}       login_page
 ${p1_enquiry_xpath}    xpath://*[@id="enquirytab"]

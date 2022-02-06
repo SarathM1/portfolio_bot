@@ -61,11 +61,11 @@ Log in to HDFC website
     Open Available Browser    ${LOGIN URL}
     ${secret}=    Get Secret    hdfc
     Select Frame    ${p1_frame}
-    Input Text When Element Is Visible    css:input[name="fldLoginUserId"]    ${secret}[customerId]
-    Click Element    xpath://*[@id="pageBody"]/div[1]/form/div[3]/div/div/div[2]/div[2]/div[2]/div[2]/a
-    Input Text When Element Is Visible    css:input[name="fldPassword"]    ${secret}[password]
-    Click Element    css:input[name="chkrsastu"]
-    Click Element    xpath:/html/body/form/div/div[3]/div/div[1]/div[2]/div[1]/div[4]/div[2]/a
+    Input Text When Element Is Visible    ${selector_user}    ${secret}[customerId]
+    Click Element    ${selector_continue}
+    Input Text When Element Is Visible    ${selector_pwd}    ${secret}[password]
+    Click Element    ${selector_secure_img}
+    Click Element    ${selector_submit}
     Unselect Frame
 
 Logout from hdfc
