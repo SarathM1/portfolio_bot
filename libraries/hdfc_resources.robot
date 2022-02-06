@@ -1,5 +1,4 @@
 *** Variables ***
-${DOWNLOAD_DIR}    ${CURDIR}/output/download/zerodha
 ${LOGIN URL}      https://netbanking.hdfcbank.com/netbanking/
 # Login page
 ${selector_user}    css:input[name="fldLoginUserId"]
@@ -19,3 +18,4 @@ ${p2_frame}       main_part
 ${timeout}        3s
 ${selector_topBar}    common_menu1
 ${selector_logout}    xpath://img[@alt="Log Out"]
+${statement_table}    xpath://*[@id="1"]

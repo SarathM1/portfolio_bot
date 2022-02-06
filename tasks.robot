@@ -1,30 +1,44 @@
 *** Settings ***
 Documentation     Get holdings from kite
-# Resource        zerodha_resources.robot
+Resource          zerodha_resources.robot
 Resource          hdfc_resources.robot
 Library           DateTime
 Library           Dialogs
 Library           OperatingSystem
-Library           RPA.Browser.Selenium    auto_close=${True}
 Library           RPA.Desktop
 Library           RPA.Robocorp.Vault
+
+*** Variables ***
+${DOWNLOAD_DIR}    ${CURDIR}/output/download/zerodha
+${HDFC_DOWNLOAD_DIR}    ${CURDIR}/output/download/hdfc
 
 *** Tasks ***
 Empty the download Directory
     Run Keyword And Ignore Error
     ...    Empty Directory    ${DOWNLOAD_DIR}
-# Download reports from Zerodha
-#    Log in to Kite website
-#    download holdings
-#    download taxpnl report
-#    logout
+    Empty Directory    ${HDFC_DOWNLOAD_DIR}
+
+Download reports from Zerodha
+    Log in to Kite website
+    download holdings
+    download taxpnl report
+    logout
 
 Download PPF report
     Log in to HDFC website
     Go to bank statement page
+    download monthly statement
     Logout from hdfc
 
 *** Keywords ***
+download monthly statement
+    sleep    2
+    Select Frame    ${p2_frame}
+    ${table} =    Read HTML table as Table    locator=${statement_table}    part=outerHTML
+    Create Directory    ${HDFC_DOWNLOAD_DIR}
+    Write table to CSV    ${table}    ${HDFC_DOWNLOAD_DIR}/monthly_statement.csv
+    Unselect Frame
+
 get date range
     ${cur_date} =    Get Current Date    result_format=datetime
     ${first day} =    set variable    01/${cur_date.month}/${cur_date.year}
