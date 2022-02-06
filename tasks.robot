@@ -22,6 +22,7 @@ Empty the download Directory
 Download PPF report
     Log in to HDFC website
     Go to bank statement page
+    Logout from hdfc
 
 *** Keywords ***
 get date range
@@ -64,3 +65,7 @@ Log in to HDFC website
     Type Text    ${secret}[password]
     Sleep    1
     Execute Manual Step    Please click on the checkbox and click LOGIN
+
+Logout from hdfc
+    Select Frame    common_menu1
+    Click Element    xpath://img[@alt="Log Out"]
