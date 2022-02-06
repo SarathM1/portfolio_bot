@@ -25,7 +25,7 @@ download holdings
     Sleep    1
     Go To    https://kite.zerodha.com/holdings
     Capture Page Screenshot    ${DOWNLOAD_DIR}/analytics.png
-    ${table} =    Read HTML table as Table    locator=css:table    part=outerHTML
+    ${table} =    zerodha_resources.Read HTML table as Table    locator=css:table    part=outerHTML
     Write table to CSV    ${table}    ${DOWNLOAD_DIR}/equity_holdings.csv
 
 Wait for Download To Complete
