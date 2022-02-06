@@ -1,6 +1,6 @@
 *** Settings ***
 Documentation     Get holdings from kite
-Library           RPA.Browser.Selenium    auto_close=${TRUE}
+Library           RPA.Browser.Selenium    auto_close=${False}
 Library           RPA.Robocorp.Vault
 Library           RPA.Desktop
 Library           html_tables.py
@@ -13,7 +13,10 @@ Fetch report from Zerodha Kite
     Insert Pin
     Go to holdings
     Read HTML table as Table
-    logout
+
+Fetch report from console
+    Go to console
+    # logout
 
 *** Keywords ***
 Open the intranet website
@@ -34,6 +37,12 @@ Insert Pin
 Go to holdings
     Sleep    1
     Go To    https://kite.zerodha.com/holdings
+    Take Screenshot    output/screenshot.png
+
+Go to console
+    Go To    https://console.zerodha.com/reports/taxpnl/eq
+    Click Button When Visible    class:btn-blue
+    Click Element When Visible    class:taxpnl-download
     Take Screenshot    output/screenshot.png
 
 Read HTML table as Table
