@@ -5,7 +5,7 @@ Resource          hdfc_resources.robot
 Library           DateTime
 Library           Dialogs
 Library           OperatingSystem
-Library           RPA.Browser.Selenium    auto_close=${False}
+Library           RPA.Browser.Selenium    auto_close=${True}
 Library           RPA.Desktop
 Library           RPA.Robocorp.Vault
 
@@ -34,7 +34,8 @@ get date range
     [Return]    ${first day}    ${last day}
 
 Fill in data
-    select frame    ${p2_frame}
+    Wait Until Keyword Succeeds    ${timeout}    1 sec
+    ...    select frame    ${p2_frame}
     select from list by value    name:selAccttype    SCA
     Sleep    1
     Select From List By Index    name:selAcct    1
@@ -47,13 +48,12 @@ Fill in data
     unselect frame
 
 Go to bank statement page
-    sleep    ${timeout}
-    select frame    ${sidepane_frame}
+    Wait Until Keyword Succeeds    ${timeout}    1 sec
+    ...    Select Frame    ${sidepane_frame}
     current frame should contain    ${p1_enquiry_text}
     click element    ${p1_enquiry_xpath}
     click element    ${p1_acntStatmnt_xpath}
     unselect frame
-    sleep    ${timeout}
     Fill in data
 
 Log in to HDFC website
