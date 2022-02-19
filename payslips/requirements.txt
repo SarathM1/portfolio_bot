@@ -1,0 +1,3 @@
+# camelot-py[cv]
+tabula-py
+PyPDF2
