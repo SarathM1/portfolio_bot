@@ -9,8 +9,7 @@ for file in glob(input_path):
     print(file)
 
     tables = tabula.read_pdf_with_template(input_path=file,
-                                           template_path="~/Downloads/tabula-combined.json")
-                                              template_path = "./tabula-templates/deductions.tabula-template.json")
+                                           template_path="./tabula-templates/tabula-combined.json")
 
     for i, table in enumerate(tables):
         print(table)
